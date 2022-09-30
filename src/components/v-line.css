@@ -1,0 +1,178 @@
+.v-line-container {
+  width: 2px;
+  height: 100%;
+  display: flex;
+  position: relative;
+  max-height: 100%;
+  min-height: 100%;
+  align-items: flex-start;
+  margin-left: var(--dl-space-space-unit);
+  margin-right: var(--dl-space-space-unit);
+  flex-direction: column;
+  background-color: #42576F;
+}
+.v-line-root-class-name {
+  width: 2px;
+  height: auto;
+  align-self: stretch;
+  margin-left: 0px;
+  margin-right: 0px;
+  background-color: #293543;
+}
+
+
+.v-line-root-class-name3 {
+  width: 100%;
+  height: 1px;
+  margin-top: var(--dl-space-space-halfunit);
+  min-height: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.v-line-root-class-name4 {
+  width: 100%;
+  height: 1px;
+  margin-top: var(--dl-space-space-halfunit);
+  min-height: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.v-line-root-class-name5 {
+  width: 100%;
+  height: 1px;
+  margin-top: var(--dl-space-space-halfunit);
+  min-height: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.v-line-root-class-name6 {
+  width: 100%;
+  height: 1px;
+  margin-top: var(--dl-space-space-halfunit);
+  min-height: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-halfunit);
+}
+.v-line-root-class-name7 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name8 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name9 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name10 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name11 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name12 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name13 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name14 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+.v-line-root-class-name15 {
+  width: 100%;
+  height: 2px;
+  margin-top: var(--dl-space-space-unit);
+  max-height: 2px;
+  min-height: 2px;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: var(--dl-space-space-unit);
+  background-color: var(--dl-color-gray-white);
+}
+@media(max-width: 767px) {
+  .v-line-root-class-name1 {
+    height: auto;
+    display: none;
+  }
+  .v-line-root-class-name2 {
+    height: auto;
+  }
+}
+@media(max-width: 479px) {
+  .v-line-root-class-name1 {
+    height: auto;
+    display: flex;
+    max-height: 100%;
+    min-height: 100%;
+  }
+  .v-line-root-class-name2 {
+    height: auto;
+  }
+}
