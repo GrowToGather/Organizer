@@ -7,19 +7,59 @@ import VLine from './components/v-line'
 import WideFilter from './components/wide-filter'
 import axios from 'axios'
 import './organizer-events.css'
+import ManageTypes from './components/manage-types'
 
 const OrganizerEvents = (props) => {
   const [state, setState] = useState({selectedMonth: Date.now(), filter: [{ allActis: false, actiOpts: []}, {age: -1}, {allLangs: false, langOpts: []},
     {allAreas: false, region: "", areaOpts: [{selected: false, text: "International"}, {selected: false, text: "Regional"}]}], events: [], 
-    eventSelected: false, selectedEvent: {}, areas: [], continents: [], countries: [], areaCountries: [], images: []});
+    selectedEventIdx: -1, selectedEvent: {}, areas: [], continents: [], countries: [], areaCountries: [], images: [], manageType: 0});
 
   function nextMonth(dir) {
     state.selectedMonth = add(state.selectedMonth, {months: dir})
     WebHelper.getEvents(state, setState);
   }
 
+  console.log(state.selectedEvent)
+
+  function createNewEvent() {
+    state.selectedEventIdx = -2;
+    state.selectedEvent = {
+      eventType: 1,
+      ageMin: 18,
+      ageMax: 999,
+      area: "International",
+      language: 1,
+      name: "",
+      imagePath: "",
+      date: 0,
+      endDate: 0,
+      link: "",
+      description: ""
+    }
+    setState({...state});
+  }
+
   function updateEventSelection(filter) {
     WebHelper.getEvents({...state, filter: filter}, setState);
+  }
+
+  function changeEventData(field, e) {
+    state.selectedEvent[field] = e.target.value;
+    setState({...state});
+  }
+
+  function changeEventDate(e) {
+    var date = new Date(e.target.value);
+    var duration = state.selectedEvent.endDate - state.selectedEvent.date;
+    state.selectedEvent.date = date.valueOf() / 1000;
+    state.selectedEvent.endDate = date.valueOf() / 1000 + duration;
+    setState({...state});
+  }
+
+  function changeEventDuration() {
+    state.selectedEvent.endDate = state.selectedEvent.date + document.getElementById("setHours").value * 3600 + 
+      document.getElementById("setMins").value * 60;
+    setState({...state});
   }
 
   useEffect(() => {
@@ -80,20 +120,26 @@ const OrganizerEvents = (props) => {
             />
           </button>
         </div>
-        <button className="organizer-events-new-event-button white-button button">
+        <button className="organizer-events-new-event-button white-button button" onClick={() => createNewEvent()}>
           <div className="organizer-events-new-event-div">
             <img className="organizer-events-new-event-img" src="/images/website/add.svg"/>
             <span className="organizer-events-new-event-text">Create new Event</span>
           </div>
         </button>
         
+        {state.selectedEventIdx == -2 ? <div className="organizer-events-outer-event-div">
+          <BigEventCard data={state.selectedEvent} rootClassName="big-event-card-root-class-name"></BigEventCard> 
+          <div className="organizer-events-selected-event"/>
+        </div> : null }
+
         {state.events.map((e, idx) => 
           <div key={idx} className="organizer-events-outer-event-div">
-            <BigEventCard key={idx} data={e} rootClassName="big-event-card-root-class-name"></BigEventCard> 
+            <BigEventCard data={e} rootClassName="big-event-card-root-class-name"></BigEventCard> 
             <button className="organizer-events-select-button1 white-button button" 
-              onClick={() => setState({...state, eventSelected: true ,selectedEvent: e})}>Select Event</button>
+              onClick={() => setState({...state, selectedEventIdx: idx ,selectedEvent: e})}>Select Event</button>
 
             <button className="organizer-events-select-button2 white-button button">Copy Event</button>
+            {state.selectedEventIdx == idx ? <div className="organizer-events-selected-event"/> : null}
           </div>)}
 
       </div>
@@ -105,7 +151,7 @@ const OrganizerEvents = (props) => {
               <span>Choose Activity:</span>
               <br></br>
             </span>
-            <select className="organizer-events-select">
+            <select className="organizer-events-select" value={state.selectedEvent.eventType} onChange={(e) => changeEventData("eventType", e)}>
               {state.filter[0].actiOpts.map((obj, idx) => <option key={idx} value={obj.id}>{obj.text}</option>)}
             </select>
           </div>
@@ -115,12 +161,7 @@ const OrganizerEvents = (props) => {
               <br></br>
             </span>
             <div className="organizer-events-container19">
-              <input
-                type="text"
-                placeholder="Activity Name"
-                className="organizer-events-textinput input"
-              />
-              <button className="organizer-events-button10 white-button button">
+              <button className="organizer-events-button10 white-button button" onClick={() => setState({...state, manageType: 0})}>
                 <span>
                   <span>Add</span>
                   <br></br>
@@ -136,7 +177,7 @@ const OrganizerEvents = (props) => {
               <span>Choose Language:</span>
               <br></br>
             </span>
-            <select className="organizer-events-select1">
+            <select className="organizer-events-select1" value={state.selectedEvent.language} onChange={(e) => changeEventData("language", e)}>
               {state.filter[2].langOpts.map((obj, idx) => <option key={idx} value={obj.id}>{obj.text}</option>)}
             </select>
           </div>
@@ -167,7 +208,7 @@ const OrganizerEvents = (props) => {
               <span>Choose Area:</span>
               <br></br>
             </span>
-            <select className="organizer-events-select2">
+            <select className="organizer-events-select2" value={state.selectedEvent.area} onChange={(e) => changeEventData("area", e)}>
               {state.areas.map((obj, idx) => <option key={idx} value={obj.id}>{obj.name}</option>)}
             </select>
             <ul className="organizer-events-ul list">
@@ -253,7 +294,8 @@ const OrganizerEvents = (props) => {
             type="text"
             placeholder="Event Title"
             className="organizer-events-textinput03 input" 
-            defaultValue={ state.eventSelected ? state.selectedEvent.name : ""}
+            value={ state.selectedEventIdx != -1 ? state.selectedEvent.name : ""}
+            onChange={(e) => changeEventData("name", e)}
           />
         </div>
         <VLine rootClassName="v-line-root-class-name10"></VLine>
@@ -263,7 +305,8 @@ const OrganizerEvents = (props) => {
             type="text"
             placeholder="https://link.to.event/call"
             className="organizer-events-textinput04 input"
-            defaultValue={ state.eventSelected ? state.selectedEvent.link : ""}
+            value={ state.selectedEventIdx != -1 ? state.selectedEvent.link : ""}
+            onChange={(e) => changeEventData("link", e)}
           />
         </div>
         <VLine rootClassName="v-line-root-class-name11"></VLine>
@@ -275,7 +318,8 @@ const OrganizerEvents = (props) => {
           <textarea
             placeholder="Detailed Description of Event"
             className="organizer-events-textarea textarea"
-            defaultValue={ state.eventSelected ? state.selectedEvent.Description : ""}
+            value={ state.selectedEventIdx != -1 ? state.selectedEvent.description : ""}
+            onChange={(e) => changeEventData("description", e)}
           ></textarea>
         </div>
         <VLine rootClassName="v-line-root-class-name12"></VLine>
@@ -285,7 +329,8 @@ const OrganizerEvents = (props) => {
             <input
               type="datetime-local"
               className="organizer-events-textinput05 input"
-              defaultValue={state.eventSelected ? (new Date(state.selectedEvent.date * 1000)).toISOString().slice(0, -8) : "" }
+              value={state.selectedEventIdx != -1 ? (new Date(state.selectedEvent.date * 1000)).toISOString().slice(0, -8) : "" }
+              onChange={(e) => changeEventDate(e)}
             />
           </div>
           <div className="organizer-events-container37">
@@ -293,17 +338,21 @@ const OrganizerEvents = (props) => {
             <div className="organizer-events-container38">
               <span className="organizer-events-text66">Hours: </span>
               <input
+                id="setHours"
                 type="number"
                 placeholder="1"
                 className="organizer-events-textinput06 input"
-                defaultValue={state.eventSelected ? parseInt((state.selectedEvent.endDate - state.selectedEvent.date) / 3600) : ""}
+                value={state.selectedEventIdx != -1 ? parseInt((state.selectedEvent.endDate - state.selectedEvent.date) / 3600) : ""}
+                onChange={(e) => changeEventDuration()}
               />
               <span className="organizer-events-text67">Minutes: </span>
               <input
+                id="setMins"
                 type="number"
                 placeholder="30"
                 className="organizer-events-textinput07 input"
-                defaultValue={state.eventSelected ? parseInt((state.selectedEvent.endDate - state.selectedEvent.date) / 60) % 60 : ""}
+                value={state.selectedEventIdx != -1 ? parseInt((state.selectedEvent.endDate - state.selectedEvent.date) / 60) % 60 : ""}
+                onChange={(e) => changeEventDuration()}
               />
             </div>
           </div>
@@ -319,7 +368,8 @@ const OrganizerEvents = (props) => {
               type="number"
               placeholder="18"
               className="organizer-events-textinput08 input"
-              defaultValue={ state.eventSelected ? state.selectedEvent.ageMin : ""}
+              value={ state.selectedEventIdx != -1 ? state.selectedEvent.ageMin : ""}
+              onChange={(e) => changeEventData("ageMin", e)}
             />
           </div>
           <div className="organizer-events-container41">
@@ -331,7 +381,8 @@ const OrganizerEvents = (props) => {
               type="number"
               placeholder="999"
               className="organizer-events-textinput09 input"
-              defaultValue={ state.eventSelected ? state.selectedEvent.ageMax : ""}
+              value={ state.selectedEventIdx != -1 ? state.selectedEvent.ageMax : ""}
+              onChange={(e) => changeEventData("ageMax", e)}
             />
           </div>
         </div>
@@ -375,10 +426,11 @@ const OrganizerEvents = (props) => {
             Delete Event
           </button>
         </div>
-        { !state.eventSelected ? <div className="organizer-events-edit-overlay"><span className="organizer-events-edit-overlay-text">
+        { state.selectedEventIdx == -1 ? <div className="organizer-events-edit-overlay"><span className="organizer-events-edit-overlay-text">
           <b>Create, Select or Copy an Event</b></span></div> : null }
 
       </div>
+      {state.manageType != -1 ? <ManageTypes type={state.manageType} data={state.filter[0].actiOpts} close={() => setState({...state, manageType: -1})}></ManageTypes> : null }
     </div>
   )
 }
