@@ -1,0 +1,211 @@
+.area-manager-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.area-manager-title-text {
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+.area-manager-input-div {
+    position: relative;
+    width: 100%;
+    height: 150px;
+}
+.area-manager-name-input {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    z-index: 150;
+}
+.area-manager-list-activities {
+    position: absolute;
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 2px;
+    background-color: white;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 4px;
+    z-index: 100;
+}
+.area-manager-inner-list-activities {
+    max-height: 200px;
+    overflow-y: auto;
+}
+.area-manager-name-input:focus + .area-manager-list-activities {
+    display: flex;
+}
+.area-manager-area-button {
+    border-width: 0px;
+    border-radius: 0px;
+    width: 100%;
+    text-align: left;
+    background-color: transparent;
+}
+.area-manager-no-area {
+    display: inline-block;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    justify-content: center;
+    color: gray;
+}
+.area-manager-create-button {
+    width: 220px;
+    margin-right: 20px;
+    padding: 8px;
+}
+.area-manager-create-button:disabled {
+    background-color: #bbbbbb;
+    color: #eeeeee;
+}
+.area-manager-update-button {
+    width: 220px;
+    margin-right: 20px;
+    padding: 8px;
+}
+
+.area-manager-delete-button {
+    width: 220px;
+    background-color: var(--dl-color-danger-700);
+    padding: 8px;
+}
+.area-manager-closed-select {
+    position: absolute;
+    width: 100%;
+    height: 40px;
+    top: 70px;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: row;
+    z-index: 50;
+}
+.area-manager-closed-select-text {
+    width: 100%;
+    text-align: left;
+  }
+  .area-manager-closed-select-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+  .area-manager-open-select-outer {
+    flex: 0 0 auto;
+    position: absolute;
+    display: flex;
+    top: 70px;
+    flex-direction: column;
+    width: 100%;
+    overflow-y: auto;
+    align-items: flex-start;
+    border-radius: 10px;
+    background-color: var(--dl-color-gray-white);
+    z-index: 0;
+  }
+  .area-manager-open-select {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 42px;
+    margin-bottom: 4px;
+    width: 100%;
+    align-items: flex-start;
+    border-radius: 5px;
+    background-color: var(--dl-color-gray-white);
+  }
+  .area-manager-button {
+    width: 190px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-width: 0px;
+    border-radius: 15px;
+    flex-direction: row;
+  }
+  .area-manager-open-select-text {
+    width: 100%;
+    text-align: left;
+  }
+  .area-manager-open-select-icon {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+  }
+  .area-manager-button1 {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    border-width: 0px;
+    border-radius: 15px;
+    flex-direction: row;
+    text-align: left;
+    float: left;
+  }
+  .area-manager-image {
+    width: 15px;
+    height: 15px;
+    object-fit: cover;
+  }
+  .area-manager-text03 {
+    color: #415771;
+    width: 100%;
+    margin-left: 4px;
+  }
+
+  .area-manager-continent-select-div {
+    width: 100%;
+    height: 35px;
+    margin-top: 2px;
+    display: flex;
+    border-width: 0;
+    align-items: center;
+    border-radius: 0px;
+    flex-direction: row;
+    background-color: #415771;
+  }
+  .area-manager-continent-select {
+    width: 645px;
+    height: 35px;
+    margin-top: 2px;
+    display: flex;
+    border-width: 0;
+    align-items: center;
+    border-radius: 0px;
+    flex-direction: row;
+    background-color: transparent;
+    color: white;
+  }
+  .area-manager-continent-select-text {
+    width: 100%;
+    font-size: 20px;
+  }
+  .area-manager-continent-select-icon {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+
+  .area-manager-full-width {
+    width: 100%;
+  }
+  .area-manager-country-list {
+    max-height: 200px;
+    overflow-y: auto;
+    padding-bottom: 20px;
+  }
+
+.area-manager-select-all-countries {
+    background-color: transparent;
+    height: 35px;
+    padding: 10px 20px;
+    border-width: 0;
+}
+
+.area-manager-selected-amount-text {
+  position: absolute;
+  top: 50px;
+}

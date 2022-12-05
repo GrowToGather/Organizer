@@ -1,24 +1,24 @@
-.activity-manager-container {
+.language-manager-container {
     display: flex;
     flex-direction: column;
 }
 
-.activity-manager-title-text {
+.language-manager-title-text {
     font-size: 22px;
     margin-bottom: 15px;
 }
-.activity-manager-input-div {
+.language-manager-input-div {
     position: relative;
     width: 100%;
     height: 100px;
 }
-.activity-manager-name-input {
+.language-manager-name-input {
     position: absolute;
     width: 100%;
     height: 40px;
     z-index: 100;
 }
-.activity-manager-list-activities {
+.language-manager-list-activities {
     position: absolute;
     display: none;
     flex-direction: column;
@@ -31,21 +31,21 @@
     border-radius: 4px;
     z-index: 50;
 }
-.activity-manager-inner-list-activities {
+.language-manager-inner-list-activities {
     max-height: 200px;
     overflow-y: auto;
 }
-.activity-manager-name-input:focus + .activity-manager-list-activities {
+.language-manager-name-input:focus + .language-manager-list-activities {
     display: flex;
 }
-.activity-manager-activity-button {
+.language-manager-language-button {
     border-width: 0px;
     border-radius: 0px;
     width: 100%;
     text-align: left;
     background-color: transparent;
 }
-.activity-manager-no-activity {
+.language-manager-no-language {
     display: inline-block;
     width: 100%;
     padding: 10px;
@@ -53,20 +53,23 @@
     justify-content: center;
     color: gray;
 }
-.activity-manager-create-button {
+.language-manager-create-button {
     width: 220px;
     margin-right: 20px;
+    padding: 8px;
 }
-.activity-manager-create-button:disabled {
+.language-manager-create-button:disabled {
     background-color: #bbbbbb;
     color: #eeeeee;
 }
-.activity-manager-update-button {
+.language-manager-update-button {
     width: 220px;
     margin-right: 20px;
+    padding: 8px;
 }
 
-.activity-manager-delete-button {
+.language-manager-delete-button {
     width: 220px;
     background-color: var(--dl-color-danger-700);
+    padding: 8px;
 }

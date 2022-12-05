@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
+import LocationChooser from './location-chooser';
 
 import './wide-filter.css'
-import axios from 'axios';
 
 const WideFilter = (props) => {
 
   const [state, setState] = useState({openActivity: false, actiFilterText: "Filter", openArea: false, areaFilterText: "Filter",
-    openLanguage: false, langFilterText: "Filter", filter: props.filter});
+    openLanguage: false, langFilterText: "Filter", filter: props.filter, openLocationChooser: false});
 
     function selectAll(selectedAll, pos, selection, allButton, filterText) {
         for (let i = 0; i < state.filter[pos][selection].length; i++) {
@@ -42,6 +42,14 @@ const WideFilter = (props) => {
     function updateAge(event) {
         state.filter[1].age = event.target.value;
         props.updateEventSelection(state.filter);
+    }
+
+    function selectCountry(id) {
+      state.openLocationChooser = false;
+      if (id != -1) {
+        state.filter[3].region = id;
+      }
+      setState({...state})
     }
 
   return (
@@ -130,14 +138,14 @@ const WideFilter = (props) => {
               </div>
             ) : null}
             <div className="wide-filter-container3">
-              <button className="wide-filter-area-button button">
+              <button className="wide-filter-area-button button" onClick={() => setState({...state, openLocationChooser: true})}>
                 <img
                   alt=""
                   src="/images/website/location.svg"
                   className="wide-filter-area-icon"
                 />
               </button>
-              <span className="wide-filter-text06">Location</span>
+              <span className="wide-filter-text06">{state.filter[3].region != -1 ? props.locationData.countries[state.filter[3].region].name : "Location"}</span>
             </div>
           </div>}
         </div>
@@ -192,6 +200,7 @@ const WideFilter = (props) => {
           />
         </div>
       </div>
+      {state.openLocationChooser ? <LocationChooser locationData={props.locationData} close={selectCountry}></LocationChooser> : null}
     </div>
   )
 }

@@ -6,7 +6,8 @@ class WebsiteHelper {
     getEvents(state, setState) {
         var selectedDate = new Date(state.selectedMonth);
     
-        var parameters = {eventType: [], language: [], age: state.filter[1].age > 0 ? state.filter[1].age : -1, 
+        var parameters = {eventType: [], language: [], international: state.filter[3].areaOpts[0].seletected ? 0: -1, 
+          country: state.filter[3].areaOpts[1].selected ? state.filter[3].region : -1, age: state.filter[1].age > 0 ? state.filter[1].age : -1, 
           startDate: (new Date(selectedDate.getFullYear(), selectedDate.getMonth(), 1)).getTime() / 1000, 
           endDate: (new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0)).getTime() / 1000}//1661983200, endDate: 1664575199}
         
@@ -38,7 +39,7 @@ class WebsiteHelper {
     
         console.log(parameters);
     
-        axios.get("https://www.73743355.xyz:23892/events/calendar", { params: parameters })
+        axios.get("https://" + window.API_URL + ":23892/events/calendar", { params: parameters })
         .then(response => response.data)
         .then((data) => {
           console.log(data);

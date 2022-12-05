@@ -1,0 +1,114 @@
+.location-chooser-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgba(42, 42, 42, 0.8);
+}
+.location-chooser-container1 {
+  flex: 0 0 auto;
+  width: 600px;
+  display: flex;
+  align-self: center;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;
+  background-color: var(--dl-color-gray-white);
+}
+.location-chooser-title-bar {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  padding: 12px;
+  box-shadow: 0px 0px 10px 0px #343434;
+  align-items: flex-start;
+  background-color: #FFC940;
+}
+.location-chooser-return-button {
+  display: flex;
+  padding: 4px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: row;
+  background-color: #FFC940;
+}
+.location-chooser-return-image {
+  width: 30px;
+  height: 30px;
+  object-fit: cover;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.location-chooser-return-replacement {
+  width: 38px;
+  height: 38px;
+}
+.location-chooser-text {
+  flex-grow: 1;
+  font-size: 24px;
+  align-self: center;
+  font-style: normal;
+  text-align: center;
+  font-weight: 600;
+}
+.location-chooser-close-button {
+  display: flex;
+  padding: 4px;
+  border-width: 0px;
+  border-radius: var(--dl-radius-radius-radius8);
+  flex-direction: row;
+  background-color: #FFC940;
+}
+.location-chooser-close-image {
+  width: 30px;
+  object-fit: cover;
+  border-radius: var(--dl-radius-radius-radius8);
+}
+.location-chooser-continent-div {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  align-items: center;
+  flex-direction: column;
+}
+.location-chooser-text1 {
+  font-size: 20px;
+}
+.location-chooser-continent-button {
+  width: 300px;
+  text-align: center;
+  margin-bottom: var(--dl-space-space-unit);
+}
+.location-chooser-country-div {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  padding: var(--dl-space-space-twounits);
+  align-items: center;
+  flex-direction: column;
+}
+.location-chooser-text2 {
+  font-size: 20px;
+}
+.location-chooser-container2 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 370px;
+  display: flex;
+  overflow-y: auto;
+  align-items: center;
+  flex-direction: column;
+}
+.location-chooser-country-button {
+  width: 400px;
+  text-align: center;
+  margin-bottom: 4px;
+}

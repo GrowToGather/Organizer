@@ -9,12 +9,12 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
 .manage-types-container01 {
-    background-color: white;
+    background-color: #FFC940;
     width: 800px;
+    margin-top: 8%;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -24,10 +24,13 @@
 
 .manage-types-remove-button {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: 15px;
+    right: 15px;
+    width: 50px;
+    height: 50px;
     padding: 5px;
     border-radius: 15px;
+    background-color: #FFC940;
 }
 
 .manage-types-remove-icon {

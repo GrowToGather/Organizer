@@ -1,24 +1,24 @@
-.activity-manager-container {
+.image-manager-container {
     display: flex;
     flex-direction: column;
 }
 
-.activity-manager-title-text {
+.image-manager-title-text {
     font-size: 22px;
     margin-bottom: 15px;
 }
-.activity-manager-input-div {
+.image-manager-input-div {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 350px;
 }
-.activity-manager-name-input {
+.image-manager-name-input {
     position: absolute;
     width: 100%;
     height: 40px;
     z-index: 100;
 }
-.activity-manager-list-activities {
+.image-manager-list-activities {
     position: absolute;
     display: none;
     flex-direction: column;
@@ -31,21 +31,21 @@
     border-radius: 4px;
     z-index: 50;
 }
-.activity-manager-inner-list-activities {
+.image-manager-inner-list-activities {
     max-height: 200px;
     overflow-y: auto;
 }
-.activity-manager-name-input:focus + .activity-manager-list-activities {
+.image-manager-name-input:focus + .image-manager-list-activities {
     display: flex;
 }
-.activity-manager-activity-button {
+.image-manager-image-button {
     border-width: 0px;
     border-radius: 0px;
     width: 100%;
     text-align: left;
     background-color: transparent;
 }
-.activity-manager-no-activity {
+.image-manager-no-image {
     display: inline-block;
     width: 100%;
     padding: 10px;
@@ -53,20 +53,38 @@
     justify-content: center;
     color: gray;
 }
-.activity-manager-create-button {
+.image-manager-create-button {
     width: 220px;
     margin-right: 20px;
+    padding: 8px;
 }
-.activity-manager-create-button:disabled {
+.image-manager-create-button:disabled {
     background-color: #bbbbbb;
     color: #eeeeee;
 }
-.activity-manager-update-button {
+.image-manager-update-button {
     width: 220px;
     margin-right: 20px;
+    padding: 8px;
 }
 
-.activity-manager-delete-button {
+.image-manager-delete-button {
     width: 220px;
     background-color: var(--dl-color-danger-700);
+    padding: 8px;
+}
+
+.image-manager-upload-file {
+    position: absolute;
+    top: 50px;
+}
+
+.image-manager-upload-image {
+    position: absolute;
+    top: 105px;
+    width: 200px;
+    height: 200px;
+    background-color: #dddddd;
+    border-radius: 5px;
+    border-width: 1px;
 }
