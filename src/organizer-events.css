@@ -688,6 +688,22 @@
   z-index: 50;
 }
 
+.organizer-events-server-connection {
+  position: fixed;
+  top: 20px;
+  right: 50px;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  background-color: #42576F;
+  border-width: 2px;
+  border-color: #FFC940;
+  border-radius: 15px;
+  color: white;
+  padding: 0px 10px;
+  box-shadow: 0 0 10px 0 darkgrey;
+}
+
 @media(max-width: 991px) {
   .organizer-events-container {
     flex-direction: row;

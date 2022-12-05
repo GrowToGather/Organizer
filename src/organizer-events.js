@@ -10,14 +10,13 @@ import axios from 'axios'
 import './organizer-events.css'
 import ManageTypes from './components/manage-types'
 
-window.API_URL = window.location.host.startsWith("localhost") ? "localhost" : "www.73743355.xyz"
+//window.API_URL = window.location.host.startsWith("localhost") ? "localhost" : "www.73743355.xyz"
 
-console.log(window.API_URL + " " + window.location.host.startsWith("localhost"))
 const OrganizerEvents = (props) => {
   const [state, setState] = useState({selectedMonth: Date.now(), filter: [{ allActis: false, actiOpts: []}, {age: -1}, {allLangs: false, langOpts: []},
     {allAreas: false, region: -1, areaOpts: [{selected: false, text: "International"}, {selected: false, text: "Regional"}]}], events: [], 
     selectedEventIdx: -1, selectedEvent: {}, areas: [], continents: [], countries: [], areaCountries: [], images: [], continentList: [], 
-    manageType: -1, openImageChooser: false});
+    manageType: -1, openImageChooser: false, connectedToRemote: true});
 
   function nextMonth(dir) {
     state.selectedMonth = add(state.selectedMonth, {months: dir})
@@ -99,8 +98,24 @@ const OrganizerEvents = (props) => {
     return list;
   }
 
+  function getServerConnectionOption(state) {
+    window.API_URL = localStorage.getItem("ServerConnection")
+    if (window.API_URL === null) {
+        setServerConnectionOption("www.73743355.xyz")
+    }
+    state.connectedToRemote = window.API_URL !== "localhost"
+  }
+
+  function setServerConnectionOption(serverURL) {
+    window.API_URL = serverURL;
+    localStorage.setItem("ServerConnection", serverURL)
+    state.connectedToRemote = window.API_URL !== "localhost"
+    setState({...state});
+  }
+
   useEffect(() => {
     document.title = "GrowToGather";
+    getServerConnectionOption(state)
 
     axios.get("https://" + window.API_URL + ":23892/organizer/types")
     .then(response => response.data)
@@ -134,7 +149,7 @@ const OrganizerEvents = (props) => {
     });
   }, []);
 
-  console.log(state);
+
 
   return (
     <div className="organizer-events-container">
@@ -386,6 +401,19 @@ const OrganizerEvents = (props) => {
       </div>
       {state.manageType != -1 ? <ManageTypes type={state.manageType} data={getTypeData()} close={() => setState({...state, manageType: -1})}></ManageTypes> : null }
       {state.openImageChooser ? <ImageChooser data={state.images} close={closeImageSelection}></ImageChooser> : null}
+      <div className="organizer-events-server-connection">
+        <span>Connect to:</span>
+        <div>
+          <input type="radio" name="ServerConnection" checked={state.connectedToRemote} 
+            onClick={() => setServerConnectionOption("www.73743355.xyz")} id="RemoteServer"/>
+          <label htmlFor="RemoteServer"> Remote Server</label>
+        </div>
+        <div>
+          <input type="radio" name="ServerConnection" checked={!state.connectedToRemote} 
+            onClick={() => setServerConnectionOption("localhost")} id="LocalServer"/>
+          <label htmlFor="LocalServer"> Local Server</label>
+        </div>  
+      </div>
     </div>
   )
 }
